@@ -12,7 +12,7 @@ Tested on one NP960XFH-XA1BR (Raptor Lake, Intel Iris Xe + RTX 4050).
 
 ## Result
 
-- Internal camera works in PipeWire, Zen (Firefox) and OBS
+- Internal camera works in PipeWire, Zen (Firefox), Chrome/Chromium and OBS
   (1920x1080, 30 fps by default, 20 fps configured here).
 - Image upright and not mirrored, neutral colors, auto exposure that works
   indoors.
@@ -32,6 +32,7 @@ Tested on one NP960XFH-XA1BR (Raptor Lake, Intel Iris Xe + RTX 4050).
 | libcamera GPU ISP | Debayer fails on NVIDIA EGL (`glFramebufferTexture2D` error). | PipeWire/WirePlumber forced to Mesa EGL. |
 | Autologin | WirePlumber/PipeWire start before logind grants access to `/dev/media0`; libcamera never retries. | Wait for the ACL in `ExecStartPre`. |
 | Firefox/Zen | Opens raw V4L2 nodes (Bayer data) and blocks the device. | `media.webrtc.camera.allow-pipewire=true`. |
+| Chrome/Chromium | Doesn't use PipeWire cameras by default ("Requested device not found"). | `WebRtcPipeWireCamera` feature. |
 
 ### Optional: dead analog audio
 
@@ -55,9 +56,18 @@ reboot
 ```
 
 Firefox/Zen: add `user/zen/user.js` to your profile or set
-`media.webrtc.camera.allow-pipewire` in `about:config`. OBS: use the
-"Video Capture Device (PipeWire)" source with an **ABGR8888** format
-(XBGR8888 renders black in OBS).
+`media.webrtc.camera.allow-pipewire` in `about:config`.
+
+Chrome/Chromium: add `WebRtcPipeWireCamera` to the **existing**
+`--enable-features=` line of `~/.config/chromium-flags.conf` /
+`~/.config/chrome-flags.conf` (only the last `--enable-features` flag is
+honoured), e.g. `--enable-features=TouchpadOverscrollHistoryNavigation,WebRtcPipeWireCamera`,
+then restart the browser completely.
+
+OBS: use the "Video Capture Device (PipeWire)" source with an **ABGR8888**
+format. With XBGR8888 (RGBx) OBS logs `Couldn't prepare frame` for every
+frame and the picture stays black or frozen, although the camera keeps
+streaming.
 
 ### Driver options
 
