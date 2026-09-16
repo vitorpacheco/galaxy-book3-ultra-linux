@@ -89,3 +89,17 @@ Try options without installing: `cd driver && make && sudo ./test-load.sh frame_
 `driver/` is GPL-2.0 (derived from the Linux kernel driver).
 `user/wireplumber/scripts/` is MIT (derived from WirePlumber). Everything else
 is CC0-1.0.
+
+## Kernel patches
+
+`kernel-patches/` has the driver changes as a clean series against Linux
+7.2.5 (`drivers/media/i2c/ov02c10.c`), in the format used by
+[omarchy-pkgs `linux-omarchy`](https://github.com/omacom/omarchy-pkgs/tree/master/pkgbuilds/linux-omarchy):
+
+- `0544` media: ov02c10: support a 26 MHz external clock
+- `0545` media: ov02c10: add Samsung Galaxy Book3 Ultra mounting quirk
+- `0546` media: ov02c10: implement get_selection()
+
+The DKMS driver in `driver/` is this series plus the tuning options
+(`frame_rate`, `gain_boost`, `analog_gain_max`), which are not suitable for
+upstream.
