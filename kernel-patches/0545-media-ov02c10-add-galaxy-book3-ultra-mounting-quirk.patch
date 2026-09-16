@@ -1,8 +1,7 @@
 From 704d2514b7bf39bd87dda2bab0a59781a2872de9 Mon Sep 17 00:00:00 2001
 From: Vitor Pacheco <vpacheco.costa@gmail.com>
 Date: Wed, 16 Sep 2026 14:11:20 -0300
-Subject: [PATCH 545/546] media: ov02c10: add Samsung Galaxy Book3 Ultra
- mounting quirk
+Subject: [PATCH] media: ov02c10: add Samsung Galaxy Book3 Ultra mounting quirk
 
 On the Samsung Galaxy Book3 Ultra (960XFH) the camera module is mounted
 flipped vertically, but the SSDB reports a rotation of 0, so
@@ -17,6 +16,8 @@ handling of the driver.
 
 Tested on a Samsung Galaxy Book3 Ultra (960XFH) with libcamera and
 PipeWire.
+
+Signed-off-by: Vitor Pacheco <vpacheco.costa@gmail.com>
 ---
  drivers/media/i2c/ov02c10.c | 39 ++++++++++++++++++++++++++++++++++---
  1 file changed, 36 insertions(+), 3 deletions(-)

@@ -1,7 +1,7 @@
 From 10980bbd2c3229a5bdcac61ac3b8b19d61cd1032 Mon Sep 17 00:00:00 2001
 From: Vitor Pacheco <vpacheco.costa@gmail.com>
 Date: Wed, 16 Sep 2026 14:11:20 -0300
-Subject: [PATCH 546/546] media: ov02c10: implement get_selection()
+Subject: [PATCH] media: ov02c10: implement get_selection()
 
 libcamera needs the pixel array geometry to fill the PixelArraySize,
 PixelArrayActiveAreas and ScalerCrop properties. Without get_selection()
@@ -10,6 +10,8 @@ fixed.
 
 The only supported mode reads out the full 1928x1092 array, so report it
 for the crop, crop default, crop bounds and native size targets.
+
+Signed-off-by: Vitor Pacheco <vpacheco.costa@gmail.com>
 ---
  drivers/media/i2c/ov02c10.c | 28 ++++++++++++++++++++++++++++
  1 file changed, 28 insertions(+)

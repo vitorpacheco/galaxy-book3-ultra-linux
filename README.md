@@ -12,7 +12,7 @@ Tested on one NP960XFH-XA1BR (Raptor Lake, Intel Iris Xe + RTX 4050).
 
 ## Result
 
-- Internal camera works in PipeWire, Firefox/Zen, Chromium and OBS
+- Internal camera works in PipeWire, Zen (Firefox) and OBS
   (1920x1080, 30 fps by default, 20 fps configured here).
 - Image upright and not mirrored, neutral colors, auto exposure that works
   indoors.
@@ -96,7 +96,7 @@ is CC0-1.0.
 7.2.5 (`drivers/media/i2c/ov02c10.c`), in the format used by
 [omarchy-pkgs `linux-omarchy`](https://github.com/omacom/omarchy-pkgs/tree/master/pkgbuilds/linux-omarchy):
 
-- `0544` media: ov02c10: support a 26 MHz external clock
+- `0544` media: ov02c10: support a 26 MHz external clock (`0544-media-ov02c10-26mhz-clock.patch`)
 - `0545` media: ov02c10: add Samsung Galaxy Book3 Ultra mounting quirk
 - `0546` media: ov02c10: implement get_selection()
 
