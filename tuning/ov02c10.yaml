@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: CC0-1.0
+#
+# libcamera Simple pipeline / Software ISP tuning for the OV02C10 on the
+# Samsung Galaxy Book3 Ultra (with the ov02c10-galaxybook driver).
+#
+# libcamera's uncalibrated.yaml plus a fixed black level. The community CCM
+# previously used here (green 0.92, red/blue 1.05) gave a 7% magenta cast;
+# grey-world AWB alone measures 0.5% on the same scene, and Adjust restores
+# gamma/contrast/saturation.
+%YAML 1.1
+---
+version: 1
+algorithms:
+  - BlackLevel:
+      # OV02C10 optical black pedestal: 64 in 10 bits = 4096 in 16 bits.
+      # Without it the dynamic estimator drifts in low light.
+      blackLevel: 4096
+  - Awb:
+  - Adjust:
+  - Agc:
+...
